@@ -1,0 +1,10 @@
+<% if @movies.empty? %>
+  <h4>Nothing found </h4>
+  <% else %>
+  <ul>
+
+    <% @movies.each do |movie| %>
+      <li><%= link_to movie["title"], movie_path(Movie.find_by(name: movie["title"])) %> <br></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,15 @@
+<h1><%= @movie.name %></h1>
+  <p> <strong>Genre:</strong> <%= @movie.genre %></p>
+  <p> <strong>Budget:</strong> <%= @movie.budget %></p>
+    <% if !@movie.producer.blank? %>
+      <p> <strong>Producer:</strong> <%= @movie.producer %></p>
+    <% else %>
+      <p> <strong>Producer:</strong>  none </p>
+    <% end %>
+    <p><strong><u>Cast:</u></strong></p>
+<% cast = @movie.get_movie_cast(@movie.api_movie_id) %>
+  <ul>
+    <% cast.each do |c| %>
+    <li><%= "#{c}" %></li>
+    <% end %>
+  </ul>
