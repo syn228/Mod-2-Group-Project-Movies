@@ -27,18 +27,28 @@ class Movie < ApplicationRecord
     Movie.find_or_create_by(name: movie_title, genre: movie_genre, budget: movie_budget, producer: movie_production, api_movie_id: input)
   end
 
-  def get_movie_cast(input)
+  def get_character(input)
     cast = RestClient.get("https://api.themoviedb.org/3/movie/#{input}/credits?api_key=945dbc0976d1fcb4db817690ca47fd3b")
     parsed_cast = JSON.parse(cast)
     character_array = []
-    actor_array = []
     parsed_cast["cast"].each {|c|
       character_array << c["character"]
-      actor_array << c["name"]
+      Character.create(name: c["character"])
     }
-    roles = character_array.each_with_index.map {|c, i| "#{c}: #{actor_array[i]}" }
+    roles = character_array.each {|c| c }
     return roles
   end
 
+  def get_actor(input)
+    cast = RestClient.get("https://api.themoviedb.org/3/movie/#{input}/credits?api_key=945dbc0976d1fcb4db817690ca47fd3b")
+    parsed_cast = JSON.parse(cast)
+    actor_array = []
+    parsed_cast["cast"].each {|c|
+      actor_array << c["name"]
+      Actor.create(name: c["name"])
+    }
+    roles = actor_array.each {|c| c }
+    return roles
+  end
 
 end

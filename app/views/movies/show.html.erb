@@ -7,9 +7,11 @@
       <p> <strong>Producer:</strong>  none </p>
     <% end %>
     <p><strong><u>Cast:</u></strong></p>
-<% cast = @movie.get_movie_cast(@movie.api_movie_id) %>
+<% character = @movie.get_character(@movie.api_movie_id) %>
+<% actor = @movie.get_actor(@movie.api_movie_id) %>
   <ul>
-    <% cast.each do |c| %>
-    <li><%= "#{c}" %></li>
+    <% character.each_with_index.map do |c, i| %>
+    <li><%= link_to c, character_path(Character.find_by(name: c))%>: <%= link_to actor[i], actor_path(Actor.find_by(name:actor[i])) %></li>
+    <% Role.create(actor_id: Actor.find_by(name: actor[i]).id, character_id: Character.find_by(name: c).id) %>
     <% end %>
   </ul>
