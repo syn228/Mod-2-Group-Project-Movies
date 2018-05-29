@@ -1,0 +1,24 @@
+<% if @movies.empty? && @characters.empty? && @actors.empty?%>
+  <h4>Nothing found </h4>
+  <% else %>
+  <ul>
+
+  <% @movies.each do |movie| %>
+  <%= link_to movie.name, movie %> | <%= movie.producer %> <br>
+  <% end %>
+  </ul>
+
+    <ul>
+
+    <% @characters.each do |character| %>
+    <%= link_to character.name, character %> | <%= character.bio %> <br>
+    <% end %>
+    </ul>
+
+    <ul>
+
+    <% @actors.each do |actor| %>
+    <%= link_to actor.name, actor %> | <%= actor.bio %> <br>
+    <% end %>
+    </ul>
+<% end %>

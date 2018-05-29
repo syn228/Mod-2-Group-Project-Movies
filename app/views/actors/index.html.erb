@@ -1,0 +1,6 @@
+<h1>All Actors</h1>
+
+<% @actors.each do |actor| %>
+  <%= link_to actor.name, actor %><br>
+  <%= actor.bio %><br></br>
+<% end %>
