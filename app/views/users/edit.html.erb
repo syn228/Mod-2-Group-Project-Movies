@@ -11,8 +11,6 @@
 <%=  form_for @user do |f| %>
   <%= f.label :username %>
   <%= f.text_field :username %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.collection_check_boxes :movie_ids, @movies, :id, :name %>
+  <%= f.collection_check_boxes :movie_ids, @movies, :id, :name %><br>
   <%= f.submit "Confirm Changes" %>
 <% end %>

@@ -1,4 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    </style>
+  </head>
+  <body>
+
+
 <p style="float:right" class="search"><%= form_tag(generals_path, :method => "get", id: "search-form") do %>
 <%= text_field_tag :search, params[:search], placeholder: "Search Movies" %>
 <%= submit_tag "Search", :name => nil %></p>
 <% end %>
+
+</body>
+</html>

@@ -2,11 +2,13 @@
 <h2>Hello, <%= @user.username %>!</h2>
 
 
-<p>Your Movies:</p><br>
+<p><strong><u>Your Movies:</u></strong></p>
   <ul>
     <% @user.movies.each do |m| %>
-      <li> <%= m.name %> </li>
-    <% end %>
-  </ul>
+      <li> <%= link_to m.name, m %> </li>
 
+    <% end %>
+    </ul>
+
+<br>
 <%= link_to "Add Movies!", edit_user_path %>
