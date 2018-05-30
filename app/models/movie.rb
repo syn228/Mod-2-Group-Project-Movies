@@ -31,7 +31,8 @@ class Movie < ApplicationRecord
     cast = RestClient.get("https://api.themoviedb.org/3/movie/#{input}/credits?api_key=945dbc0976d1fcb4db817690ca47fd3b")
     parsed_cast = JSON.parse(cast)
     character_array = []
-    parsed_cast["cast"].each {|c|
+    parsed_cast["cast"].each_with_index {|c, i|
+      break if i == 10
       character_array << c["character"]
       @character = Character.find_or_create_by(name: c["character"])
     }
@@ -46,7 +47,7 @@ class Movie < ApplicationRecord
     parsed_cast = JSON.parse(cast)
     actor_array = []
     parsed_cast["cast"].each_with_index {|c, i|
-      break if i == 15
+      break if i == 10
       actor_array << c["name"]
       @actor = Actor.find_or_create_by(name: c["name"])
       Movie.get_actor_bio(c["id"])
@@ -61,6 +62,6 @@ class Movie < ApplicationRecord
     parsed_actor = JSON.parse(ac)
     a_bio = parsed_actor["biography"]
     a = Actor.find_by(name: parsed_actor["name"])
-    a.update(bio: a_bio)
+    a.update(bio: a_bio, img: "http://image.tmdb.org/t/p/w185/#{parsed_actor["profile_path"]}" )
   end
 end

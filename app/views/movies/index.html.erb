@@ -1,5 +1,5 @@
 <h1>All Movies</h1>
 
-<% @movies.each do |movie| %>
+<% @movies.sort_by{|m| m.name}.each do |movie| %>
   <%= link_to movie.name, movie %><br>
 <% end %>

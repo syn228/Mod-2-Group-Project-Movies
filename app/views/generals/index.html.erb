@@ -3,7 +3,8 @@
   <% else %>
   <ul>
 
-    <% @movies.each do |movie| %>
+    <% @movies.each_with_index do |movie, i| %>
+      <% break if i == 10 %>
       <li><%= link_to movie["title"], movie_path(Movie.find_by(name: movie["title"])) %> <br></li>
     <% end %>
   </ul>

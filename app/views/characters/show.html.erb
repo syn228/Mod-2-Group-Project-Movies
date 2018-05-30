@@ -1,4 +1,9 @@
 <h1><%= @character.name %></h1>
 <% @character.actors.each do |actor| %>
-  <%= link_to actor.name, actor %> - <%= actor.movies.map {|m| m.name}.uniq.join(", ") %><br>
+  <%= link_to actor.name, actor %>
+  <% if actor.movies %>
+  <% actor.movies.uniq.each do |m| %>
+  - <%= link_to m.name, m %><br>
+    <% end %>
+  <% end %>
 <% end %>

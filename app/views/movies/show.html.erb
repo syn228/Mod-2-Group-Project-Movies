@@ -11,7 +11,7 @@
 <% actor = @movie.get_actor(@movie.api_movie_id, @movie) %>
   <ul>
     <% character.each_with_index.map do |c, i| %>
-    <li><%= link_to c, character_path(Character.find_by(name: c))%>: <%= link_to actor[i], actor_path(Actor.find_by(name:actor[i])) %></li>
+    <li><%= link_to c, character_path(Character.find_by(name: c))%> - <%= link_to actor[i], actor_path(Actor.find_by(name:actor[i])) %></li>
     <% Role.find_or_create_by(actor_id: Actor.find_by(name: actor[i]).id, character_id: Character.find_by(name: c).id) %>
     <% Appearance.find_or_create_by(character_id:Character.find_by(name: c).id, movie_id: @movie.id) %>
     <% Cast.find_or_create_by(actor_id:Actor.find_by(name: actor[i]).id, movie_id: @movie.id) %>

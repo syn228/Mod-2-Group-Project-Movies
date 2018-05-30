@@ -1,6 +1,12 @@
 <h1>All Characters</h1>
 
-<% @characters.each do |character| %>
-  <%= link_to character.name, character %><br>
-  <%= character.bio %><br></br>
-<% end %>
+<% @characters.sort_by{|c|c.name}.each do |character| %>
+  <strong><%= link_to character.name, character %></strong>
+  <% if character.movies != [] %>
+  <% character.movies.uniq.each do |m| %>
+  - <u><%= link_to m.name, m %></u><br>
+      <% end %>
+    <% else %>
+    <br>
+  <% end %>
+<% end %><br>
