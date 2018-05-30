@@ -3,6 +3,8 @@ class Movie < ApplicationRecord
   has_many :characters, through: :appearances
   has_many :casts
   has_many :actors, through: :casts
+  has_many :collection
+  has_many :users, through: :collection
 
   def self.search(search)
   where("name LIKE ? OR genre LIKE ? OR producer LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
