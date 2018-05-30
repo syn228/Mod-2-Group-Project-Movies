@@ -1,7 +1,7 @@
 <h1>All Actors</h1>
 
 <% @actors.sort_by{|a|a.name}.each do |actor| %>
-  <%= link_to actor.name, actor %>
+  <strong><%= link_to actor.name, actor %></strong>
   <% if actor.movies %>
     <% actor.movies.uniq.each do |m| %>
       - <%= link_to m.name, m %>

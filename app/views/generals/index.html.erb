@@ -1,11 +1,76 @@
-<% if @movies.empty? %>
-  <h4>Nothing found </h4>
-  <% else %>
-  <ul>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    div.gallery {
+  border: 1px solid #ccc;
+  position:relative;
+}
 
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.responsive {
+  padding: 0 6px;
+  float: center;
+  width: 24.99999%;
+}
+
+@media only screen and (max-width: 700px) {
+  .responsive {
+      width: 49.99999%;
+      margin: 6px 0;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .responsive {
+      width: 100%;
+  }
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+    </style>
+  </head>
+  <body>
+
+
+<div class="responsive">
+  <div class="gallery">
+<% if @movies.empty? %>
+  Nothing found<br>
+  <%= link_to "Back to search", search_path %>
+  <% else %>
     <% @movies.each_with_index do |movie, i| %>
+    <% if !movie["poster_path"].blank? %>
       <% break if i == 10 %>
-      <li><%= link_to movie["title"], movie_path(Movie.find_by(name: movie["title"])) %> <br></li>
+      <img src="http://image.tmdb.org/t/p/w300/<%= movie["poster_path"] %>">
+      <div class="desc"><%= link_to movie["title"], movie_path(Movie.find_by(name: movie["title"])) %> <br></div>
+      <% end %>
     <% end %>
-  </ul>
 <% end %>
+  </div>
+</div>
+</body>
+</html>

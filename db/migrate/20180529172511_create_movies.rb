@@ -5,6 +5,7 @@ class CreateMovies < ActiveRecord::Migration[5.2]
       t.string :genre
       t.string :budget
       t.string :producer
+      t.string :img
       t.integer :api_movie_id
 
       t.timestamps

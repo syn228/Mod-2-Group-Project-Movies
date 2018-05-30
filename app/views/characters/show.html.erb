@@ -1,9 +1,10 @@
 <h1><%= @character.name %></h1>
 <% @character.actors.each do |actor| %>
-  <%= link_to actor.name, actor %>
+  <%= link_to actor.name, actor %><br><br>
   <% if actor.movies %>
-  <% actor.movies.uniq.each do |m| %>
-  - <%= link_to m.name, m %><br>
+  <p>Character shows up in:</p>
+  <ul><% actor.movies.uniq.each do |m| %>
+   <li><%= link_to m.name, m %></li>
     <% end %>
-  <% end %>
+  <% end %></ul>
 <% end %>

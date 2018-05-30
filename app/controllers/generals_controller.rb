@@ -3,6 +3,10 @@ class GeneralsController < ApplicationController
   def home
   end
 
+  def search
+
+  end
+
   def index
     if params[:search]
       @movies = Movie.search_movies(params[:search])

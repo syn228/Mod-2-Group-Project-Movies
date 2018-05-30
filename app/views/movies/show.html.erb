@@ -1,6 +1,7 @@
+<img style="width:15%;" src="<%= @movie.img %>">
 <h1><%= @movie.name %></h1>
   <p> <strong>Genre:</strong> <%= @movie.genre %></p>
-  <p> <strong>Budget:</strong> <%= @movie.budget %></p>
+  <p> <strong>Budget:</strong> <%= number_with_delimiter(@movie.budget) %></p>
     <% if !@movie.producer.blank? %>
       <p> <strong>Producer:</strong> <%= @movie.producer %></p>
     <% else %>

@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2018_05_29_174329) do
     t.string "genre"
     t.string "budget"
     t.string "producer"
+    t.string "img"
     t.integer "api_movie_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

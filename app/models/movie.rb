@@ -24,7 +24,8 @@ class Movie < ApplicationRecord
     movie_genre = parsed_movie["genres"].map { |genre| genre["name"] }.join(", ")
     movie_budget = parsed_movie["budget"]
     movie_production = parsed_movie["production_companies"].map {|production| production["name"]}.join(", ")
-    Movie.find_or_create_by(name: movie_title, genre: movie_genre, budget: movie_budget, producer: movie_production, api_movie_id: input)
+    Movie.find_or_create_by(name: movie_title, genre: movie_genre, budget: movie_budget, producer: movie_production, api_movie_id: input, img: "http://image.tmdb.org/t/p/w185/#{parsed_movie["poster_path"]}")
+
   end
 
   def get_character(input, movie_name)
@@ -64,4 +65,5 @@ class Movie < ApplicationRecord
     a = Actor.find_by(name: parsed_actor["name"])
     a.update(bio: a_bio, img: "http://image.tmdb.org/t/p/w185/#{parsed_actor["profile_path"]}" )
   end
+
 end

@@ -12,6 +12,17 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
       <style>
+        h3 {
+          float:right;
+          color: blue
+        }
+
+        .rating {
+          clear: right;
+          float: right;
+          border-style: solid;
+          padding-right: 10px
+        }
         .search {
           position: absolute;
           right: 0px;
@@ -63,15 +74,20 @@
       <li ><%= link_to "Movies", movies_path %></li>
       <li ><%= link_to "Characters", characters_path %></li>
       <li ><%= link_to "Actors", actors_path %></li>
+      <li ><%= link_to "Search", search_path %></li>
 
 
-      <li style="float:right" class="search"><%= form_tag(generals_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search Movies" %>
-      <%= submit_tag "Search", :name => nil %></li>
-      <% end %>
   </ul>
   </table>
     </div>
+    <h3>Our Most Popular Movies:</h3>
+    <% pop = RestClient.get("https://api.themoviedb.org/3/movie/popular?api_key=945dbc0976d1fcb4db817690ca47fd3b&language=en-US&page=1") %>
+    <% parsed_pop = JSON(pop) %>
+    <ol class="rating">
+    <% parsed_pop["results"].sort_by{|a| -a["vote_average"] }.each do |p| %>
+    <li><%= p["title"] %> - <%= p["vote_average"] %></li>
+    <% end %>
+    </ol>
     <%= yield %>
   </body>
 </html>

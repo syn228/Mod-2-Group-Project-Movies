@@ -1,6 +1,8 @@
-<img src="<%= @actor.img %>">
+<img style="padding-left: 30px;padding-top: 30px" src="<%= @actor.img %>">
 <h1><%= @actor.name %></h1>
 <p><%= @actor.bio %></p>
 <% @actor.characters.each do |character| %>
-  <strong><%= character.name %> - <%= character.movies.map {|m| m.name}.uniq.join(", ") %></strong><br>
+  <%= link_to character.name, character %> in:<br> <% character.movies.map do |m| %>
+    <%= link_to m.name, m %><br>
+  <% end %><br>
 <% end %>

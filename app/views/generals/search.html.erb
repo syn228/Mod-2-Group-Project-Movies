@@ -1,0 +1,4 @@
+<p style="float:right" class="search"><%= form_tag(generals_path, :method => "get", id: "search-form") do %>
+<%= text_field_tag :search, params[:search], placeholder: "Search Movies" %>
+<%= submit_tag "Search", :name => nil %></p>
+<% end %>
