@@ -1,17 +1,35 @@
-<h1>Log In!</h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWLIjstFpcik6aZXddpr4uhqRhkjwTz6sl5Y4RUsScL_mv9GFSxg);
+        background-position: center;
+        background-size: 50%;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Log In!</h1>
 
-<% if flash[:errors] %>
-  <ul>
-    <% flash[:errors].each do |e| %>
-      <li><%= e %></li>
+    <% if flash[:errors] %>
+      <ul>
+        <% flash[:errors].each do |e| %>
+          <li><%= e %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
 
-<%= form_tag sessions_path do %>
-  <%= label_tag :username %>
-  <%= text_field_tag :username %>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Log In" %>
-<% end %>
+    <%= form_tag sessions_path do %>
+      <%= label_tag :username %>
+      <%= text_field_tag :username %>
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+      <%= submit_tag "Log In" %>
+    <% end %>
+
+  </body>
+</html>

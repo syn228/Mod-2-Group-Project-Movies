@@ -1,10 +1,28 @@
-<h1>All Actors</h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    body {
+      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn2K0Q9bkUox_-4sHCu-TBnXiPX8If4Vn8dQjHjm5eCAOhUggLlg);
+      background-repeat:no-repeat;
+      background-position: center;
+      background-size: 40%;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>All Actors</h1>
 
-<% @actors.sort_by{|a|a.name}.each do |actor| %>
-  <strong><%= link_to actor.name, actor %></strong>
-  <% if actor.movies %>
-    <% actor.movies.uniq.each do |m| %>
-      - <%= link_to m.name, m %>
+    <% @actors.sort_by{|a|a.name}.each do |actor| %>
+      <strong><%= link_to actor.name, actor %></strong>
+      <% if actor.movies %>
+        <% actor.movies.uniq.each do |m| %>
+          - <%= link_to m.name, m %>
+        <% end %>
+      <% end %><br>
     <% end %>
-  <% end %><br>
-<% end %>
+
+  </body>
+</html>

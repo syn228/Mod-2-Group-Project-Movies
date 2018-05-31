@@ -1,19 +1,37 @@
-<h1>Sign Up!</h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        background-image: url(https://www.thinkingdirections.com/BlueCurvedArrow_3inch.jpg);
+        background-repeat: no-repeat;
+        background-size: 50%;
+        background-position: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sign Up!</h1>
 
-<% if flash[:errors] %>
-  <ul>
-    <% flash[:errors].each do |e| %>
-      <li><%= e %></li>
+    <% if flash[:errors] %>
+      <ul>
+        <% flash[:errors].each do |e| %>
+          <li><%= e %></li>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
-<% end %>
 
-<%= form_for @user do |f| %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit "Sign Up" %>
-<% end %>
+    <%= form_for @user do |f| %>
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+      <%= f.submit "Sign Up" %>
+    <% end %>
+
+  </body>
+</html>

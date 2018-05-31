@@ -1,12 +1,29 @@
-<h1>All Characters</h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>All Characters</h1>
 
-<% @characters.sort_by{|c|c.name}.each do |character| %>
-  <strong><%= link_to character.name, character %></strong>
-  <% if character.movies != [] %>
-  <% character.movies.uniq.each do |m| %>
-  - <u><%= link_to m.name, m %></u><br>
+    <% @characters.sort_by{|c|c.name}.each do |character| %>
+      <strong><%= link_to character.name, character %></strong>
+      <% if character.movies != [] %>
+      <% character.movies.uniq.each do |m| %>
+      - <u><%= link_to m.name, m %></u>
+      Played by: <% character.actors.each do |actor| %> <%= link_to actor.name, actor %><br>
+            <% end %>
+          <% end %>
+        <% else %>
+        <br>
       <% end %>
-    <% else %>
-    <br>
-  <% end %>
-<% end %><br>
+    <% end %><br>
+
+  </body>
+</html>

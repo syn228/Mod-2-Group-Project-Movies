@@ -34,6 +34,7 @@ class Movie < ApplicationRecord
     cast = RestClient.get("https://api.themoviedb.org/3/movie/#{input}/credits?api_key=945dbc0976d1fcb4db817690ca47fd3b")
     parsed_cast = JSON.parse(cast)
     character_array = []
+    if parsed_cast["cast"] != []
     parsed_cast["cast"].each_with_index {|c, i|
       break if i == 10
       character_array << c["character"]
@@ -42,7 +43,9 @@ class Movie < ApplicationRecord
     @character.movies << movie_name
     roles = character_array.each {|c| c }
     return roles
-
+  end
+  else
+    roles = []
   end
 
   def get_actor(input, movie_name)
