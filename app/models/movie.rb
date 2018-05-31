@@ -71,4 +71,24 @@ class Movie < ApplicationRecord
     a.update(bio: a_bio, img: "http://image.tmdb.org/t/p/w185/#{parsed_actor["profile_path"]}" )
   end
 
+  def find_character(input)
+    Character.find_by(name: input)
+  end
+
+  def find_actor(input)
+    Actor.find_by(name: input)
+  end
+
+  def find_or_create_roles(actor_id, character_id)
+    Role.find_or_create_by(actor_id: actor_id, character_id: character_id)
+  end
+
+  def find_or_create_appearance(character_id, movie_id)
+    Appearance.find_or_create_by(character_id: character_id, movie_id: movie_id)
+  end
+
+  def find_or_create_cast(actor_id, movie_id)
+    Cast.find_or_create_by(actor_id: actor_id, movie_id: movie_id)
+  end
+
 end
