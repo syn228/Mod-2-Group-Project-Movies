@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe UsersController do
+RSpec.describe SessionsController do
+  
   before(:each) do
     User.create(
       username: "ian",
@@ -11,8 +12,4 @@ RSpec.describe UsersController do
   it { should validate_presence_of(:username) }
   it { should validate_presence_of(:password_digest) }
   it { should validate_uniqueness_of(:username) }
-
-  before(:each) do
-    expect (subject.current_user).to_not eq(nil)
-  end
 end

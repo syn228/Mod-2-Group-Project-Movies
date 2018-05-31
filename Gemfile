@@ -30,6 +30,10 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rest-client'
 
 gem 'json'
+
+gem 'rspec'
+
+gem 'rspec-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
