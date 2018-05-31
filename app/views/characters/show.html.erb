@@ -1,5 +1,6 @@
 <h1><%= @character.name %></h1>
 <% @character.actors.each do |actor| %>
+Played By: <br>
   <%= link_to actor.name, actor %><br><br>
   <% if actor.movies %>
   <p>Character shows up in:</p>

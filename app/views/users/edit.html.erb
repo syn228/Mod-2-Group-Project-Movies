@@ -10,7 +10,12 @@
 
 <%=  form_for @user do |f| %>
   <%= f.label :username %>
-  <%= f.text_field :username %>
-  <%= f.collection_check_boxes :movie_ids, @movies, :id, :name %><br>
+  <%= f.text_field :username %><br>
+  <%= f.collection_check_boxes :movie_ids, @movies.sort_by{|m| m.name}, :id, :name do |movie|%>
+    <div>
+      <%= movie.label %>
+      <%= movie.check_box %>
+    </div>
+    <% end %>
   <%= f.submit "Confirm Changes" %>
 <% end %>

@@ -1,14 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body {
+        background-image:  url(https://i.imgur.com/q9Hp9l8.png);
+        background-position: bottom;
+        background-size: 53%;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Hello, <%= @user.username %>!</h2>
+    <p><strong><u>Your Movies:</u></strong></p>
 
-<h2>Hello, <%= @user.username %>!</h2>
-
-
-<p><strong><u>Your Movies:</u></strong></p>
-  <ul>
-    <% @user.movies.each do |m| %>
-      <li> <%= link_to m.name, m %> </li>
-
-    <% end %>
-    </ul>
-
+        <% @user.movies.sort_by{|m| m.name}.each do |m| %>
+           <%= link_to m.name, m %><br>
+        <% end %>
 <br>
-<%= link_to "Add Movies!", edit_user_path %>
+
+    <h4><%= link_to "Add Movies!", edit_user_path %></h4>
+  </body>
+</html>
