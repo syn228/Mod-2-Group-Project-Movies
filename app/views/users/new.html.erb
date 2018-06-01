@@ -10,9 +10,15 @@
         background-size: 50%;
         background-position: center;
       }
+      .margin {
+        margin-left:5px
+      }
     </style>
   </head>
   <body>
+    <div class="margin">
+
+
     <h1>Sign Up!</h1>
 
     <% if flash[:errors] %>
@@ -32,6 +38,6 @@
       <%= f.password_field :password_confirmation %>
       <%= f.submit "Sign Up" %>
     <% end %>
-
+    </div>
   </body>
 </html>
