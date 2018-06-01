@@ -11,12 +11,16 @@
         background-size: 50%;
         background-attachment: fixed;
       }
+      .margin {
+        margin-left:5px;
+      }
     </style>
   </head>
   <body>
+    <div class="margin">
     <h1>All Characters</h1>
     <% @characters.sort_by{|c|c.name}.each do |character| %>
-      <% if character.movies != [] %>
+      <% if character.movies != [] || character.name != "" || character.name != nil%>
       <% character.movies.uniq.each do |m| %>
       <strong><%= link_to character.name, character %></strong>
       - <u><%= link_to m.name, m %></u>
@@ -27,6 +31,6 @@
         <br>
       <% end %>
     <% end %><br>
-
+    </div>
   </body>
 </html>

@@ -4,7 +4,7 @@
     <title>Movies</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,6 +12,12 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
       <style>
+        a:visited {
+          color:purple;
+        }
+        body {
+          font-family: "Inconsolata";
+        }
         h3 {
           float:right;
           color: blue;

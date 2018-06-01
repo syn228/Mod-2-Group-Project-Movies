@@ -1,11 +1,29 @@
-<h1><%= @character.name %></h1>
-<% @character.actors.each do |actor| %>
-Played By: <br>
-  <%= link_to actor.name, actor %><br><br>
-  <% if actor.movies %>
-  <p>Character shows up in:</p>
-  <ul><% actor.movies.uniq.each do |m| %>
-   <li><%= link_to m.name, m %></li>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    .margin {
+      margin-left:5px;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="margin">
+
+
+    <h1><%= @character.name %></h1>
+    <% @character.actors.each do |actor| %>
+    Played By: <br>
+      <%= link_to actor.name, actor %><br><br>
+      <% if actor.movies %>
+      <p>Character shows up in:</p>
+      <ul><% actor.movies.uniq.each do |m| %>
+       <li><%= link_to m.name, m %></li>
+        <% end %>
+      <% end %></ul>
     <% end %>
-  <% end %></ul>
-<% end %>
+    </div>
+  </body>
+</html>

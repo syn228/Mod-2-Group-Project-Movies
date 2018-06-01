@@ -11,9 +11,15 @@
       background-size: 40%;
       background-attachment: fixed;
     }
+    .margin {
+      margin-left:5px
+    }
     </style>
   </head>
   <body>
+    <div class="margin">
+
+
     <h1>All Actors</h1>
 
     <% @actors.sort_by{|a|a.name}.each do |actor| %>
@@ -24,6 +30,6 @@
         <% end %>
       <% end %><br>
     <% end %>
-
+    </div>
   </body>
 </html>

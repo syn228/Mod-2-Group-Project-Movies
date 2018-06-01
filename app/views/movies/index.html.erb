@@ -11,14 +11,19 @@
         background-size: cover;
         background-attachment: fixed;
       }
+      .margin {
+        margin-left:5px
+      }
     </style>
   </head>
   <body>
+    <div class="margin">
     <h1>All Movies</h1>
 
     <% @movies.sort_by{|m| m.name}.each do |movie| %>
       <%= link_to movie.name, movie %><br>
     <% end %>
 
+    </div>
   </body>
 </html>
