@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2018_05_30_213310) do
     t.string "name"
     t.string "bio"
     t.string "img"
+    t.integer "ext_actor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,8 +37,6 @@ ActiveRecord::Schema.define(version: 2018_05_30_213310) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
-    t.string "bio"
-    t.string "alignment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

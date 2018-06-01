@@ -1,3 +1,4 @@
+
 <img style="width:20%;" src="<%= @movie.img %>">
 <h1><%= @movie.name %></h1>
   <p> <strong>Genre:</strong> <%= @movie.genre %></p>
@@ -8,15 +9,16 @@
       <p> <strong>Producer:</strong>  none </p>
     <% end %>
     <p><strong><u>Cast:</u></strong></p>
-<% character = @movie.get_character(@movie.api_movie_id, @movie) %>
-<% if character != [] %>
-<% actor = @movie.get_actor(@movie.api_movie_id, @movie) %>
+<% @characters = @movie.get_character(@movie) %>
+<% if @character != [] %>
+<% @actors = @movie.get_actor(@movie)%>
   <ul>
-    <% character.each_with_index.map do |c, i| %>
-    <li><%= link_to c, character_path(@movie.find_character(c))%> - <%= link_to actor[i], actor_path(@movie.find_actor(actor[i])) %></li>
-    <% @movie.find_or_create_roles(@movie.find_actor(actor[i]).id, @movie.find_character(c).id) %>
+    <% @characters.each_with_index.map do |c, i| %>
+  
+    <li><%= link_to c, c%> - <%= link_to @actors[i].name, @actors[i] %></li>
+    <% @movie.find_or_create_roles(@actors[i].id, @movie.find_character(c).id) %>
     <% @movie.find_or_create_appearance(@movie.find_character(c).id, @movie.id) %>
-    <% @movie.find_or_create_cast(@movie.find_actor(actor[i]).id, @movie.id) %>
+    <% @movie.find_or_create_cast(@actors[i].id, @movie.id) %>
     <% end %>
     <% else  %>
     <%=  "Nothing Found" %>

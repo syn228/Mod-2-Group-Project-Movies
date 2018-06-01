@@ -2,6 +2,8 @@
 # relevent information to parse into the local database for showing. 
 
 class Movie < ApplicationRecord
+
+  @actor = ""
   has_many :appearances
   has_many :characters, through: :appearances
   has_many :casts
@@ -28,7 +30,7 @@ class Movie < ApplicationRecord
 
   def self.get_movie_info(input)
     movie = RestClient.get("#{MOVIE_URL}#{input}#{API_KEY}&language=en-US")
-    self.look_or_create_movie(JSON.parse(movie))
+    Movie.look_or_create_movie(JSON.parse(movie))
   end
 
   def get_character(movie_obj)
@@ -39,7 +41,6 @@ class Movie < ApplicationRecord
       pc["cast"].each_with_index do |character, index|
         break if index == 10
         char = Character.find_or_create_by(name: character["character"]) # We don't have character.bio nor character.alignment. Perhaps rid of it in the schema?
-        actor = get_actor(movie_obj)
         char.movies << movie_obj
         character_array << character["character"]
       end
@@ -64,35 +65,31 @@ class Movie < ApplicationRecord
     movie_budget = movie_json["budget"]
     movie_production = movie_json["production_companies"].map {|production| production["name"]}.join(", ")
     ext_api_id = movie_json["id"]
-    movie_obj = Movie.find_or_create_by(name: movie_title, genre: movie_genre, budget: movie_budget, producer: movie_production, api_movie_id: ext_api_id, img: "http://image.tmdb.org/t/p/w185/#{movie_json["poster_path"]}")
-    get_character(movie_obj)
+    Movie.find_or_create_by(name: movie_title, genre: movie_genre, budget: movie_budget, producer: movie_production, api_movie_id: ext_api_id, img: "http://image.tmdb.org/t/p/w185/#{movie_json["poster_path"]}")
+    # movie_obj.get_character(movie_obj)
   end
 
   
-  def self.get_actor(movie_obj)
+  def get_actor(movie_obj)
     cast = RestClient.get("#{MOVIE_URL}#{movie_obj["api_movie_id"]}/credits#{API_KEY}")
 
     pc = JSON.parse(cast)
-    actor_array = []
+   
     pc["cast"].each_with_index do |castmember, index|
-      break if index == 5
-      actor_json = get_actor_bio(castmember["id"])
+      break if index == 10
+      # actor_json = self.get_actor_bio(castmember["id"])
       actor_name = castmember["name"]
 
-      actor_array << castmember["name"]
-      @actor = Actor.find_or_create_by(name: actor_name, bio: actor_json["biography"], img: actor_json["profile_path"])
-      movie_obj.actors << @actor
+      
+      @actor = Actor.find_or_create_by(name: actor_name, ext_actor_id: castmember["id"])
+      @actor.movies << movie_obj
       # Movie.get_actor_bio(castmember["id"])
     end
-    @actor.movies << movie_obj
-    actor_array.each {|c| c }
+    
+    movie_obj.actors.each {|c| c }
   end
 
-  def self.get_actor_bio(ext_actor_id)
-    ac = RestClient.get("#{PERSON_URL}#{ext_actor_id}#{API_KEY}&language=en-US")
-    JSON.parse(ac)
-    # Actor.find_by(name: parsed_actor["name"], bio: parsed_actor["biography"], img: "#{IMG_URL}#{parsed_actor["profile_path"]}" )
-  end
+ 
 
   def find_character(input)
     Character.find_by(name: input)

@@ -11,30 +11,30 @@ class CharactersController < ApplicationController
   end
 
   def show
-    
+    byebug
   end
 
   def create
-    @character = Character.create(character_params)
-    if @character.valid?
-      redirect_to @character
-    else
-      flash[:errors] = @character.errors.full_messages
-      redirect_to new_character_path
-    end
+    # @character = Character.create(character_params)
+    # if @character.valid?
+    #   redirect_to @character
+    # else
+    #   flash[:errors] = @character.errors.full_messages
+    #   redirect_to new_character_path
+    # end
   end
 
   def edit
   end
 
   def update
-    @character.update(character_params)
-    if @character.valid?
-      redirect_to @character
-    else
-      flash[:errors] = @character.errors.full_messages
-      redirect_to edit_character_path
-    end
+    # @character.update(character_params)
+    # if @character.valid?
+    #   redirect_to @character
+    # else
+    #   flash[:errors] = @character.errors.full_messages
+    #   redirect_to edit_character_path
+    # end
   end
 
 
